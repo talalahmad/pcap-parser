@@ -8,7 +8,7 @@ folders = folders.split() # folders variable is now an array that contains all f
 files = 'adobe.com,cnn.com,qq.com,twitter.com,amazon.com,google.com,rakuten.co.jp,aol.com,microsoft.com,taobao.com'
 files = files.split(',')
 
-cmd = 'tshark -r ' + sys.argv[1] +' -2 -R "dns" -T fields -e frame.time_relative -e ip.src -e ip.dst -e dns.qry.name -e _ws.col.Info'
+cmd = 'tshark -r ' + sys.argv[1] +' -2 -R "dns" -T fields -e frame.time_relative -e ip.src -e ip.dst -e dns.qry.name -e dns.flags.rcode -e _ws.col.Info'
 
 print cmd
 
