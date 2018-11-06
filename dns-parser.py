@@ -22,20 +22,25 @@ lines = Popen(cmd, shell=True, stdout=PIPE).communicate()[0]
 lines = lines.split('\n')
 
 for line in lines:
-	print line
+	#print line
 	#this line seperates line into columns
 	columns = line.split("\t")
 	if columns == ['']:
 		continue
 	time = columns[0]
-	print columns
+	#print columns
 	dns_query_name = columns[3]
 	dns_query_flag = columns[4]
 	if dns_query_flag == '':
-		if dns_query_name not in dnsqueries.keys():
+		#this is actually not correct way to do this, it needs to be improved 
+		#this works to show what is going on
+		#what I am doing here is that if I say a new name, I count that as a new DNS query 
+		#and everytime I see that name again I just treat that as a reply to the query 
+		#but it can be a refused request and means you will send it again  
+		if dns_query_name not in dnsqueries.keys(): 
 			dnsqueries[dns_query_name] = {"queries":[],"replies":[],"name":dns_query_name}
 			dnsqueries[dns_query_name]["queries"].append(time)
-		else:
+		else: 
 			dnsqueries[dns_query_name]["replies"].append((dns_query_flag,time))
 
 plt.xlabel('time (seconds)')
