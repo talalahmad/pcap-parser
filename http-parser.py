@@ -89,5 +89,6 @@ for idx, event in enumerate(order):
             plt.plot([float(event["starttime"]), float(event["starttime"])], current_y*2, "go-")
 
 
+plt.tight_layout()
 
 plt.show()
