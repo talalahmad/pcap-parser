@@ -22,7 +22,7 @@ order = []
 activeports = {}
 
 
-lines = Popen(cmd, shell=True, stdout=PIPE).communicate()[0]
+lines = Popen(cmd, shell=True, stdout=PIPE).communicate()[0].decode('utf-8')
 
 lines = lines.split('\n')
 
@@ -72,7 +72,7 @@ for event in order:
 
 print yticks
 
-yticknums = range(len(yticks))
+yticknums = list(range(len(yticks)))
 yticknums.reverse()
 
 plt.yticks(yticknums, yticks)

@@ -18,7 +18,8 @@ cmd = 'tshark -r ' + current_file +' -2 -R "dns" -T fields -e frame.time_relativ
 print cmd
 
 
-lines = Popen(cmd, shell=True, stdout=PIPE).communicate()[0]
+lines = Popen(cmd, shell=True, stdout=PIPE).communicate()[0].decode('utf-8')
+#lines = Popen(cmd, shell=True, stdout=PIPE).communicate()[0]
 
 lines = lines.split('\n')
 
@@ -56,7 +57,7 @@ for dnsquery in order:
 
 print yticks
 
-yticknums = range(len(yticks))
+yticknums = list(range(len(yticks)))
 
 yticknums.reverse()
 
